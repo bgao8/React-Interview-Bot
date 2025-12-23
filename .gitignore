@@ -1,10 +1,12 @@
 # Virtual environment
 env311/
+interview-env/
 venv/
 ENV/
 *.env
 *.env.*
 .venv/
+key.env
 
 # Python cache
 __pycache__/
