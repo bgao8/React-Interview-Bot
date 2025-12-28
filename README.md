@@ -30,6 +30,7 @@ The focus was on building a production-style, full-stack system that tightly int
    git clone https://github.com/your-username/echo.git
    cd echo
 2. Install dependencies
+   ```bash
    pip install requirements.txt
 
 ## Tech Stack
