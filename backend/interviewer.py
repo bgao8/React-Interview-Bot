@@ -14,6 +14,7 @@ class Interviewer:
         self.grader = Grader()
         self._stop_event = threading.Event()
         self.recording_thread = None
+        
 
         self.position = ''
         self.level = ''
@@ -49,8 +50,9 @@ class Interviewer:
         messages=[
             {'role':'system', 'content':
                      "You are an interviewer for a competitive position. "
-                     "Ask realistic, challenging questions."
-                     "Don't be too friendly, but don't just be a robot."
+                     "Given the interview type, position, level, company, and additional notes,"
+                     "Ask realistic, relevant, challenging questions."
+                     "Use online resources to ensure questions are accurate and relevant for the company and position."
                      "Ask one question at a time, and let the applicant respond. "
                      "Respond to answers appropriately and professionally"
                      "Keep the interview to a realistic length, and wrap up"},
