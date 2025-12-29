@@ -31,7 +31,12 @@ The focus was on building a production-style, full-stack system that tightly int
    cd echo
 2. Install dependencies
    ```bash
-   pip install requirements.txt
+   # Backend
+   pip install -r requirements.txt
+
+   # Frontend
+   npm install
+   npm run dev
 
 ## Tech Stack
 - Python
