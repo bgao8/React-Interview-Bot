@@ -1,11 +1,21 @@
-interface StopButtonProps {
-    onStop: () => void;
-}
+// interface StopButtonProps {
+//     onClick: () => void;
+//     disabled?:boolean;
+//     type:"button";
+//     children:React.ReactNode;
+// }
 
-function StopButton({ onStop }: StopButtonProps) {
-    return (
-        <button onClick={onStop}>Stop Recording</button>
-    );
-}
+// function StopButton({ onClick, type, disabled, children }: StopButtonProps) {
+//     return (
+//         <button 
+//             onClick={onClick}
+//             type={type}
+//             disabled={disabled}
+//         >
+//             {children}
+//             Stop Recording
+//         </button>
+//     );
+// }
 
-export default StopButton;
+// export default StopButton;

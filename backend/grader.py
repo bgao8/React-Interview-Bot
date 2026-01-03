@@ -5,7 +5,7 @@ class Grader:
         self.b_parameters = ['Professionalism', 'Interpersonal skills', 'Attitude', 'Experience']
         self.t_parameters = ['Problem-solving ability', 'Accuracy', 'Reasoning']
 
-    def build_message(self, conversation):
+    def build_message(self, conversation, type):
         message=[
             {'role':'system', 'content':
                 f"You are given an interview transcript. Grade the applicant"

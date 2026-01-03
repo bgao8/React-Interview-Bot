@@ -5,7 +5,8 @@ class Applicant:
     def __init__(self):
         self.r = sr.Recognizer()
         self.talking = False
-        self.mic_index = None
+        self.r.dynamic_energy_threshold = True
+        self.r.pause_threshold = 10
     
     def get_mic_index(self):
         return self.mic_index
@@ -19,40 +20,24 @@ class Applicant:
     def stop_talking(self):
         self.talking = False
 
-    def record_speech(self, mic_index):
-        if not self.talking:
-            return None
-        
-        try:
-            with sr.Microphone(device_index=mic_index) as mic:
-                audio = self.r.listen(mic, timeout=5, phrase_time_limit=10)
-                transcribed = self.r.recognize_vosk(audio)
-                
-                return transcribed
+    def record_once(self, mic_index=None):
+        audio_chunks = []
+        with sr.Microphone(device_index=mic_index) as mic:
+            print("Listening...")
 
-        except sr.WaitTimeoutError:
-            raise
+            self.r.adjust_for_ambient_noise(mic, duration=0.5)
+            while self.talking:
+                try:
+                    audio = self.r.listen(
+                        mic,
+                        timeout=1.5,
+                        phrase_time_limit=4           # 4 second chunks
+                    )
+                    text = self.r.recognize_vosk(audio)
+                    if text:
+                        audio_chunks.append(text)
 
-        except Exception as e:
-            raise e
-
-    def log_response(self, mic_index):
-        try:
-            while(self.is_recording()):
-                text = self.record_speech(mic_index)
-                # print(f"[DEBUG] Recorded text: {text}")
-
-                if text is None:
+                except sr.WaitTimeoutError:
                     continue
 
-                if not self.is_recording():
-                    break
-
-                return text
-
-        except Exception as e:
-            raise
-
-        # print("Wrote text")
-        # response = self.record_speech(mic_index)
-        # return response
+        return ''.join(audio_chunks)

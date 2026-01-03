@@ -1,10 +1,9 @@
 from fastapi import FastAPI, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
-from interviewer import Interviewer  # your logic
 
 app = FastAPI()
 
-# Allow frontend (e.g., React running on localhost:5173 or 3000) to talk to backend
+# React running on localhost:5173 or 3000
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://localhost:3000"],
@@ -12,4 +11,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-

@@ -1,0 +1,41 @@
+.interview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.record-controls-button {
+    width: 150px;
+    height: 50px;
+    background-color: green;
+    color:white;
+    border-radius: 10ch;
+    border-width: 0ch;
+    font-size: 15px;
+    cursor:pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+
+    font-size: 18px;
+}

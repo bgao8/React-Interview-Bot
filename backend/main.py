@@ -11,8 +11,10 @@ class InterviewRequest(BaseModel):
     level: str
     company: str
     type: str
-    notes: str
-    conversation: List[List[Any]] = []
+    notes: str | None = None
+
+class StartRecordingRequest(BaseModel):
+    mic_device_id: str
 
 app = FastAPI()
 
@@ -56,7 +58,6 @@ def build_message_from_request(data: InterviewRequest):
 
 interviewer = Interviewer()
 
-
 @app.post("/interview")
 async def ask_question(request: InterviewRequest):
     try:
@@ -70,10 +71,28 @@ async def ask_question(request: InterviewRequest):
 
         ai_question = response.choices[0].message.content.strip()
 
-        interviewer.conversation.append(("Interviewer", ai_question))
-
         return {"question": ai_question}
 
     except Exception as e:
         print("Error in /interview:", e)
         return {"error": str(e)}
+    
+@app.post("/start-recording")
+def start_recording():
+    interviewer.start_recording(None)
+    return {"status": "ok"}
+
+@app.post("/stop-recording")
+def stop_recording():
+    question = interviewer.stop_recording()
+    return {"question": question}
+
+@app.post("/start-interview")
+def start_interview(data: InterviewRequest):
+    interviewer.position = data.position
+    interviewer.level = data.level
+    interviewer.company = data.company
+    interviewer.type = data.type
+    interviewer.notes = data.notes or ""
+
+    return {"status": "ok"}
