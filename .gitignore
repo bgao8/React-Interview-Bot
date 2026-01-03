@@ -45,4 +45,7 @@ frontend/.env.*
 .LSOverride
 
 # VSCode
-.vscode/
+.vscode/backend/model/
+*.fst
+*.mdl
+*.raw
