@@ -1,14 +1,9 @@
 import React, { useMemo, useRef, useState } from "react";
-import { Route, Routes } from "react-router";
-import MicSelector from "./components/MicSelector";
-import Main from "./Router";
-import Home from "./pages/Home";
 import Router from "./Router";
 
 
 // API CONFIG 
 // Use relative paths so the Vite dev server proxy (if configured) applies
-// In production set `VITE_API_BASE` to a full URL and it'll be used instead.
 const VITE_API_BASE = (import.meta as any)?.env?.VITE_API_BASE;
 const API_BASE = VITE_API_BASE ?? "";
 const API_PATHS = {

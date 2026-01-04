@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import UserInfo from "../components/UserInfo";
 import "../styles/StartInterview.css";
 
-function InterviewPage() {
+function StartInterview() {
   const [position, setPosition] = useState("");
   const [level, setLevel] = useState("");
   const [company, setCompany] = useState("");
@@ -26,41 +26,50 @@ function InterviewPage() {
         throw new Error("Failed to start interview");
       }
 
+      const result = await res.json();
+
+      // Navigate with the greeting question
       navigate("/interview", {
         state: {
-          position,
-          level,
-          company,
-          type,
-          notes,
+          initialQuestion: result.question,
         },
       });
     } catch (err) {
-      console.error(err);
+      console.error("Error starting interview:", err);
     }
   }
 
   return (
-    <div className='start-page-container'>
-      <h1 className="heading">Configure your interview </h1>
+    <div className="start-page-container">
+      <h1 className="heading">Configure your interview</h1>
+
       <div className="info-container">
-        <UserInfo 
-          position={position} setPosition={setPosition}
-          level={level} setLevel={setLevel}
-          company={company} setCompany={setCompany}
-          type={type} setType={setType}
-          notes={notes} setNotes={setNotes}
+        <UserInfo
+          position={position}
+          setPosition={setPosition}
+
+          level={level}
+          setLevel={setLevel}
+
+          company={company}
+          setCompany={setCompany}
+
+          type={type}
+          setType={setType}
+          
+          notes={notes}
+          setNotes={setNotes}
         />
       </div>
 
-      <button 
-        className='start-interview-button' 
+      <button
+        className="start-interview-button"
         onClick={startInterview}
-        >
-          Start Interview
+      >
+        Start Interview
       </button>
     </div>
   );
 }
 
-export default InterviewPage;
+export default StartInterview;

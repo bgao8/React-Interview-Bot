@@ -31,7 +31,6 @@ def ask_question():
     try:
         question = interviewer.ask_question()
         return {"question": question}
-
     except Exception as e:
         print("Error in /interview:", e)
         return {"error": str(e)}
@@ -44,6 +43,7 @@ def start_recording():
 @app.post("/stop-recording")
 def stop_recording():
     question = interviewer.stop_recording()
+    interviewer.greeting = False
     return {"question": question}
 
 @app.post("/start-interview")
@@ -54,5 +54,8 @@ def start_interview(data: InterviewRequest):
     interviewer.type = data.type
     interviewer.notes = data.notes or ""
 
-    print("SAVED:", interviewer.__dict__)
-    return {"status": "ok"}
+    first_question = interviewer.ask_question()
+    interviewer.greeting = True
+
+    return {"status": "ok",
+            "question": first_question}

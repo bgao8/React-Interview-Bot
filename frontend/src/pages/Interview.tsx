@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
-// import RecordButton from "../components/RecordButton";
-// import StopButton from "../components/StopButton"
+import { useLocation } from "react-router-dom";
 import RecordControls from "../components/RecordControls";
 import "../styles/Interview.css";
 
 function Interview() {
+  const { state } = useLocation();
+
   const [currentQuestion, setCurrentQuestion] = useState<string>(
-    "Nice to meet you. How are you doing today?"
+    state?.initialQuestion ?? ""
   );
+
+  // run once
+  useEffect(() => {
+    if (state?.initialQuestion) {
+      setCurrentQuestion(state.initialQuestion);
+    }
+  }, [state]);
+
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [audioError, setAudioError] = useState(false);
@@ -25,6 +34,7 @@ function Interview() {
       if (!res.ok) {
         throw new Error("Failed to start recording");
       }
+
     } catch (err) {
       console.error(err);
       setIsRecording(false);

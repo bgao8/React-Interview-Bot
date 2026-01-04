@@ -13,6 +13,7 @@
 .info-container {
     margin-top: 20px;
     min-height: 30vh;
+    resize: none;
 }
 
 .start-interview-button {
@@ -29,4 +30,9 @@
     border-width: 0ch;
     font-size: 15px;
     cursor:pointer;
+}
+
+textarea {
+    max-height: 16px;
+    transform: translateY(30%);
 }

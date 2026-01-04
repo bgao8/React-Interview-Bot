@@ -21,6 +21,8 @@ class Interviewer:
         self.type = ''
         self.notes = ''
 
+        self.greeting = True
+
     def is_recording(self):
         return self.applicant.is_recording()
 
@@ -60,19 +62,32 @@ class Interviewer:
             with open('transcript.txt', 'r') as file:
                 transcript = ''.join(file.readlines())
 
-        messages=[
-            {'role':'system', 'content':
-                "Given the interview type, position, level, company, and additional notes,"
-                "Ask realistic, relevant, challenging questions."
-                "Use online resources to ensure questions are accurate and relevant for the company and position."
-                "Ask one question at a time."
-                "Respond to answers appropriately and professionally"
-                "Keep the interview to a realistic length, and wrap up"
-                "Do not use speaker labels like 'Interviewer: '"},
-            {'role':'user', 
-                'content':f"Interview type: {self.type}, Position: {self.position}, level: {self.level}, company: {self.company}, additional notes: {self.notes}"
-                    f'Recent conversation: {transcript}'}
-        ]
+        if not self.greeting:
+            messages=[
+                {'role':'system', 'content':
+                    "Given the interview type, position, level, company, and additional notes,"
+                    "Ask realistic, relevant, challenging questions."
+                    "Use online resources to ensure questions are accurate and relevant for the company and position."
+                    "Ask one question at a time."
+                    "Respond to answers appropriately and professionally"
+                    "Keep the interview to a realistic length, and ask the user if they have questions near the end."
+                    "In your final parting message, include the phrase 'We will be in touch soon.'"
+                    "Do not use speaker labels like 'Interviewer: '"},
+                {'role':'user', 
+                    'content':f"Interview type: {self.type}, Position: {self.position}, level: {self.level}, company: {self.company}, additional notes: {self.notes}"
+                        f'Recent conversation: {transcript}'}
+            ]
+        else:
+            messages=[
+                {'role':'system', 'content':
+                    "Given the interview type, position, level, company, and additional notes,"
+                    "Greet the interviewee professionally and amicably."
+                    "Do not use speaker labels like 'Interviewer: '"
+                },
+                {'role':'user', 
+                    'content':f"Interview type: {self.type}, Position: {self.position}, level: {self.level}, company: {self.company}, additional notes: {self.notes}"
+                }
+            ]
 
         return messages
 
