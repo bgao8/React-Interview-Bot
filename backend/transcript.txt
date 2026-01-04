@@ -1,0 +1,19 @@
+Interviewer: Thank you for joining this interview. To start, can you tell me about a time when you faced a significant challenge in a project? How did you approach that challenge and what was the outcome?
+Applicant: {
+  "text" : "whoa can you just reiterate what"
+}{
+  "text" : "those of this interview"
+}
+Interviewer: Could you please clarify your question? Are you asking for more information about the challenges you might face in a project or about the interview process itself? I'm here to help you through this interview.
+Applicant: {
+  "text" : "the details like the role and company"
+}{
+  "text" : ""
+}
+Interviewer: The role you're applying for is a Software Developer Intern position at Google. As an intern, you'd be working on various projects, collaborating with teams to develop and improve software solutions. Now, let's dive right into the questions.
+
+Can you describe a programming project you've worked on that you're particularly proud of? What was your role in that project, and what technologies did you use?
+Applicant: {
+  "text" : "greed thank you so much"
+}
+Interviewer: Can you explain the importance of algorithms in software development and give an example of a specific algorithm you’ve implemented in a project? How did it improve the functionality or efficiency of that project?

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MicSelector from "../components/MicSelector";
+import UserInfo from "../components/UserInfo";
 import "../styles/StartInterview.css";
 
 function InterviewPage() {
@@ -16,33 +16,27 @@ function InterviewPage() {
     const data = { position, level, company, type, notes };
 
     try {
-      const response = await fetch("http://localhost:8000/interview", {
+      const res = await fetch("http://localhost:8000/start-interview", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
-      if (result.question) {
-        // navigate after success
-        navigate("/interview", {
-          state: {
-            initialQuestion: result.question,
-            position,
-            level,
-            company,
-            type,
-            notes,
-          },
-        });
-      } else if (result.error) {
-        console.error("API error:", result.error);
+      if (!res.ok) {
+        throw new Error("Failed to start interview");
       }
-    } catch (error) {
-      console.error("Fetch error:", error);
+
+      navigate("/interview", {
+        state: {
+          position,
+          level,
+          company,
+          type,
+          notes,
+        },
+      });
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -50,11 +44,13 @@ function InterviewPage() {
     <div className='start-page-container'>
       <h1 className="heading">Configure your interview </h1>
       <div className="info-container">
-        <input placeholder="Position" value={position} onChange={e => setPosition(e.target.value)} />
-        <input placeholder="Level" value={level} onChange={e => setLevel(e.target.value)} />
-        <input placeholder="Company" value={company} onChange={e => setCompany(e.target.value)} />
-        <input placeholder="Type" value={type} onChange={e => setType(e.target.value)} />
-        <input placeholder="Notes" value={notes} onChange={e => setNotes(e.target.value)} />
+        <UserInfo 
+          position={position} setPosition={setPosition}
+          level={level} setLevel={setLevel}
+          company={company} setCompany={setCompany}
+          type={type} setType={setType}
+          notes={notes} setNotes={setNotes}
+        />
       </div>
 
       <button 

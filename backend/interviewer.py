@@ -20,24 +20,9 @@ class Interviewer:
         self.company = ''
         self.type = ''
         self.notes = ''
-        
-        # self.conversation = []
 
     def is_recording(self):
         return self.applicant.is_recording()
-
-    # def start_recording(self, mic_index):
-    #     self._stop_event.clear()
-    #     self.applicant.start_talking()
-
-    #     def recording_loop():
-    #         while not self._stop_event.is_set():
-    #             response = self.applicant.log_response(None)
-    #             self.add_to_conversation('Applicant', response)
-    #     # self.answer_question(mic_index)
-
-    #     self.recording_thread = threading.Thread(target=recording_loop)
-    #     self.recording_thread.start()
 
     def start_recording(self, mic_index):
         if self.recording_thread:
@@ -55,11 +40,6 @@ class Interviewer:
         self.recording_thread = threading.Thread(target=record)
         self.recording_thread.start()
 
-    # def _record_once(self, mic_index):
-    #     text = self.applicant.record_once(mic_index)
-    #     if text:
-    #         self.add_to_conversation("Applicant", text)
-
     def stop_recording(self):
         if not self.recording_thread:
             return None
@@ -72,7 +52,7 @@ class Interviewer:
             print("NO AUDIO CAPTURED")
             return None
 
-        self.add_to_conversation("Applicant", self._last_applicant_text)
+        self.add_to_transcript("Applicant", self._last_applicant_text)
         return self.ask_question()
 
     def build_message(self):
@@ -87,7 +67,8 @@ class Interviewer:
                 "Use online resources to ensure questions are accurate and relevant for the company and position."
                 "Ask one question at a time."
                 "Respond to answers appropriately and professionally"
-                "Keep the interview to a realistic length, and wrap up"},
+                "Keep the interview to a realistic length, and wrap up"
+                "Do not use speaker labels like 'Interviewer: '"},
             {'role':'user', 
                 'content':f"Interview type: {self.type}, Position: {self.position}, level: {self.level}, company: {self.company}, additional notes: {self.notes}"
                     f'Recent conversation: {transcript}'}
@@ -104,17 +85,19 @@ class Interviewer:
                 messages=message
             )
             question = response.choices[0].message.content.strip()
-            self.add_to_conversation('Interviewer', question)
+            self.add_to_transcript('Interviewer', question)
             return question
 
         except Exception as e:
             raise e
 
-    def add_to_conversation(self, role, text):
+    def add_to_transcript(self, role, text):
         with open('transcript.txt' , 'a') as file:
             file.write(f'{role}: {text}\n')
 
-    def get_conversation(self):
+    # For future use
+    '''
+    def get_transcript(self):
         as_string = ''
         as_string += "============== TRANSCRIPT ============== \n"
         as_string += "Applicant details: \n"
@@ -143,5 +126,6 @@ class Interviewer:
         self.stop_recording()
         self._stop_event.set()
 
-    # def grade_interview(self):
-    #     return self.grader.grade_interview(self.type)
+    def grade_interview(self):
+        return self.grader.grade_interview(self.type)
+    '''

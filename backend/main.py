@@ -1,10 +1,7 @@
-from fastapi import FastAPI, UploadFile, Form
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from interviewer import Interviewer  # your logic
-import openai
+from interviewer import Interviewer
 from pydantic import BaseModel
-from typing import List, Any
-
 
 class InterviewRequest(BaseModel):
     position: str
@@ -27,51 +24,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def build_message_from_request(data: InterviewRequest):
-    messages = [
-        {
-            'role': 'system',
-            'content': (
-                "You are an interviewer for a competitive position. "
-                "Ask realistic, challenging questions. "
-                "Don't be too friendly, but don't just be a robot. "
-                "Ask one question at a time, and let the applicant respond. "
-                "Respond to answers appropriately and professionally. "
-                "Keep the interview to a realistic length, and wrap up."
-            ),
-        }
-    ]
-
-    user_content = (
-        f"Interview type: {data.type}, Position: {data.position}, level: {data.level}, company: {data.company}, additional notes: {data.notes}. "
-    )
-
-    try:
-        last_lines = data.conversation[-16:]
-        user_content += f" Last lines: {last_lines}"
-    except Exception:
-        pass
-
-    messages.append({'role': 'user', 'content': user_content})
-
-    return messages
-
 interviewer = Interviewer()
 
 @app.post("/interview")
-async def ask_question(request: InterviewRequest):
+def ask_question():
     try:
-        messages = build_message_from_request(request)
-
-        print("Loading...")
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=messages
-        )
-
-        ai_question = response.choices[0].message.content.strip()
-
-        return {"question": ai_question}
+        question = interviewer.ask_question()
+        return {"question": question}
 
     except Exception as e:
         print("Error in /interview:", e)
@@ -95,4 +54,5 @@ def start_interview(data: InterviewRequest):
     interviewer.type = data.type
     interviewer.notes = data.notes or ""
 
+    print("SAVED:", interviewer.__dict__)
     return {"status": "ok"}

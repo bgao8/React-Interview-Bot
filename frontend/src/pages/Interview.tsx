@@ -11,20 +11,6 @@ function Interview() {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [audioError, setAudioError] = useState(false);
-  
-  useEffect(() => {
-    fetch("http://localhost:8000/start-interview", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        position: "Senior Data Analyst",
-        level: "Senior",
-        company: "Pharmaceutical Company",
-        type: "Behavioral + Technical",
-        notes: "",
-      }),
-    });
-  }, []);
 
   const startRecording = async () => {
     if (isRecording) return;
