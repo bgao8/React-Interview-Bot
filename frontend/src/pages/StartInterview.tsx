@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UserInfo from "../components/UserInfo";
 import "../styles/StartInterview.css";
+import MicSelector from "../components/MicSelector";
 
 function StartInterview() {
   const [position, setPosition] = useState("");
@@ -9,6 +10,8 @@ function StartInterview() {
   const [company, setCompany] = useState("");
   const [type, setType] = useState("");
   const [notes, setNotes] = useState("");
+
+  const [selectedMic, setSelectedMic] = useState<MediaDeviceInfo | null>(null);
 
   const navigate = useNavigate();
 
@@ -41,7 +44,7 @@ function StartInterview() {
 
   return (
     <div className="start-page-container">
-      <h1 className="heading">Configure your interview</h1>
+      <h1 className="heading">Configure Your Interview</h1>
 
       <div className="info-container">
         <UserInfo
@@ -62,12 +65,20 @@ function StartInterview() {
         />
       </div>
 
+      <div className="mic-selector">
+        <MicSelector 
+          value={selectedMic?.deviceId} 
+          onSelect={setSelectedMic} 
+        />
+      </div>
+
       <button
         className="start-interview-button"
         onClick={startInterview}
       >
         Start Interview
       </button>
+      
     </div>
   );
 }

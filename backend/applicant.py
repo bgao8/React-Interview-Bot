@@ -20,7 +20,7 @@ class Applicant:
     def stop_talking(self):
         self.talking = False
 
-    def record_once(self, mic_index=None):
+    def record_once(self, mic_index):
         audio_chunks = []
         with sr.Microphone(device_index=mic_index) as mic:
             print("Listening...")

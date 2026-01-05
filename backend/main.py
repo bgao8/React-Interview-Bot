@@ -25,15 +25,6 @@ app.add_middleware(
 )
 
 interviewer = Interviewer()
-
-@app.post("/interview")
-def ask_question():
-    try:
-        question = interviewer.ask_question()
-        return {"question": question}
-    except Exception as e:
-        print("Error in /interview:", e)
-        return {"error": str(e)}
     
 @app.post("/start-recording")
 def start_recording():
