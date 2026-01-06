@@ -14,10 +14,26 @@
     align-items: center;
 }
 
-.record-controls-button {
+.start-recording-button {
     width: 150px;
     height: 50px;
     background-color: green;
+    color:white;
+    border-radius: 10ch;
+    border-width: 0ch;
+    font-size: 15px;
+    cursor:pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stop-recording-button {
+    width: 150px;
+    height: 50px;
+    background-color: red;
     color:white;
     border-radius: 10ch;
     border-width: 0ch;
@@ -38,4 +54,22 @@
     height: 50vh;
 
     font-size: 18px;
+}
+
+.terminate-button {
+    width: 100px;
+    height: 25px;
+    background-color: black;
+    color:white;
+    border-radius: 10ch;
+    border-width: 0ch;
+    font-size: 10px;
+    cursor:pointer;
+
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    position: fixed;
+    bottom: 2vh;
 }
