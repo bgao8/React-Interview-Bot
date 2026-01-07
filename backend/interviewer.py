@@ -68,7 +68,7 @@ class Interviewer:
                     "Given the interview type, position, level, company, and additional notes,"
                     "Ask realistic, relevant, challenging questions."
                     "Use online resources to ensure questions are accurate and relevant for the company and position."
-                    "Ask one question at a time."
+                    "Ask one question at a time, and acknowledge the user's previous response when appropriate."
                     "Respond to answers appropriately and professionally"
                     "Keep the interview to a realistic length, and ask the user if they have questions near the end."
                     "In your final parting message, include the phrase 'We will be in touch soon.'"
