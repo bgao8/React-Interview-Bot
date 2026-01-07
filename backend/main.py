@@ -33,8 +33,8 @@ def start_recording():
 
 @app.post("/stop-recording")
 def stop_recording():
-    question = interviewer.stop_recording()
     interviewer.greeting = False
+    question = interviewer.stop_recording()
     return {"question": question}
 
 @app.post("/start-interview")
@@ -46,7 +46,6 @@ def start_interview(data: InterviewRequest):
     interviewer.notes = data.notes or ""
 
     first_question = interviewer.ask_question()
-    interviewer.greeting = True
 
     return {"status": "ok",
             "question": first_question}
