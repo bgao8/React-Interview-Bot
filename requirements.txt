@@ -9,9 +9,3 @@ uvicorn
 python-dotenv
 pydantic
 requests
-
-### Frontend Requirements
-- Node.js 18+
-- npm
-- React + TypeScript
-- Vite
