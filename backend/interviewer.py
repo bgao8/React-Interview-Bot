@@ -144,3 +144,8 @@ class Interviewer:
     def grade_interview(self):
         return self.grader.grade_interview(self.type)
     '''
+
+    def reset(self):
+        if os.path.exists('transcript.txt'):
+            with open('transcript.txt', 'w'):
+                pass

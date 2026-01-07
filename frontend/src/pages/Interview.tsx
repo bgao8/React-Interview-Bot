@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import RecordControls from "../components/RecordControls";
+import Terminate from "../components/Terminate";
+import { useNavigate } from "react-router-dom";
 import "../styles/Interview.css";
 
 function Interview() {
+  const navigate = useNavigate();
   const { state } = useLocation();
 
   const [currentQuestion, setCurrentQuestion] = useState<string>(
@@ -71,6 +74,19 @@ function Interview() {
     }
   };
 
+  const terminateInterview = async () => {
+    const res = await fetch("http://localhost:8000/terminate-interview", {
+      method: "POST",
+    });
+    
+    if (!res.ok) {
+      console.error("Terminate failed");
+      return;
+    }
+
+    navigate("/");
+  }
+
   return (
     <div className="interview-container">
       <p className="question-container">
@@ -92,6 +108,9 @@ function Interview() {
           Audio not captured. Please try again.
         </>
       )}
+
+      <Terminate handleTerminate={terminateInterview}/>
+
     </div>
   );
 }

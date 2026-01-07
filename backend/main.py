@@ -49,3 +49,8 @@ def start_interview(data: InterviewRequest):
 
     return {"status": "ok",
             "question": first_question}
+
+@app.post("/terminate-interview")
+def terminate_interview():
+    interviewer.reset()
+    return {"status": "terminated"}
