@@ -17,7 +17,7 @@ The focus was on building a production-style application that connects frontend 
 ## Installation
 1. Clone the repository:
 ```bash 
-https://github.com/bgao8/React-Interview-Bot.git
+git clone https://github.com/bgao8/React-Interview-Bot.git
 ```
 ```bash
 cd React-Interview-Bot
