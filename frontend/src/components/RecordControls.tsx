@@ -17,7 +17,7 @@ function RecordControls({
         <div>
             {!isRecording && (
                 <button 
-                    className="record-controls-button"
+                    className="start-recording-button"
                     type='button'
                     onClick={onStart}
                 >
@@ -27,7 +27,7 @@ function RecordControls({
 
             {isRecording && (
                 <button
-                    className="record-controls-button"
+                    className="stop-recording-button"
                     type='button'
                     onClick={onStop}
                 >
