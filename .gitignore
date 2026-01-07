@@ -49,3 +49,6 @@ frontend/.env.*
 *.fst
 *.mdl
 *.raw
+
+# transcript
+backend/transcript.txt
