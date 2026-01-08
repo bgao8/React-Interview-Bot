@@ -1,20 +1,29 @@
 .home-container {
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+
+  background-color: #f8fafc;
 }
 
 .home-title {
-  min-height: 37vh;
+  margin-bottom: 0.85rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #f8fafc;
   color: rgb(0, 0, 0);
+  font-size: 70px;
+  font-family: "Playfair Display", serif;
+}
+
+.home-subtitle {
+  margin-top: 0;
+  margin-bottom: 4rem;
 }
 
 .start-button {
@@ -24,9 +33,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
 
   background-color: green;
-  color:white;
+  color:#f8fafc;
   border-radius: 10ch;
   border-width: 0ch;
   font-size: 15px;
