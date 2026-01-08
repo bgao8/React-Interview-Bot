@@ -1,75 +1,75 @@
 .interview-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-left: 70px;
-    margin-right: 70px;
+    background-color: #f8fafc;
 }
 
-.heading {
+.question-section {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
-
-.start-recording-button {
-    width: 150px;
-    height: 50px;
-    background-color: green;
-    color:white;
-    border-radius: 10ch;
-    border-width: 0ch;
-    font-size: 15px;
-    cursor:pointer;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.stop-recording-button {
-    width: 150px;
-    height: 50px;
-    background-color: red;
-    color:white;
-    border-radius: 10ch;
-    border-width: 0ch;
-    font-size: 15px;
-    cursor:pointer;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-top: 18vh;
 }
 
 .question-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-
+    max-width: min(80vw, 900px);
     font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.controls-section {
+    margin-top: 33vh;
+    margin-bottom: 0;
+    color: #f8fafc
+}
+
+.start-recording-button,
+.stop-recording-button {
+    width: 150px;
+    height: 50px;
+    border-radius: 10ch;
+    border: none;
+    font-size: 15px;
+    font-family:'Times New Roman', Times, serif;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-recording-button {
+    background-color: green;
+    color: #f8fafc;
+}
+
+.start-recording-button:hover {
+    transform: translateY(-1px);
+}
+
+.stop-recording-button {
+    background-color: red;
+    color: #f8fafc;
+}
+
+.stop-recording-button:hover {
+    transform: translateY(-1px);
 }
 
 .terminate-button {
-    width: 100px;
-    height: 25px;
-    background-color: black;
-    color:white;
-    border-radius: 10ch;
-    border-width: 0ch;
-    font-size: 10px;
-    cursor:pointer;
-
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
     position: fixed;
     bottom: 2vh;
+
+    width: 100px;
+    height: 25px;
+
+    background-color: black;
+    color: #f8fafc;
+
+    border-radius: 10ch;
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
 }

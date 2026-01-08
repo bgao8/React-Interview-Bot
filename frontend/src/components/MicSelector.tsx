@@ -36,7 +36,7 @@ function MicSelector({ value, onSelect }: MicSelectorProps) {
 
   return (
     <div>
-      <label htmlFor="mic-select">Choose mic: </label>
+      <label htmlFor="mic-select"></label>
       <select
         id="mic-select"
         value={value ?? ""}

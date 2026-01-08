@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: Helvetica;
+    background-color: #f8fafc;
 }
 
 .heading {
@@ -15,28 +15,45 @@
     margin-top: 10vh;
     min-height: 20vh;
     resize: none;
+    color: #f8fafc;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.25rem;
+    margin-top: 2rem;
 }
 
 .start-interview-button {
     width: 150px;
     height: 50px;
     margin-top: 10vh;
+    margin-bottom: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     background-color: green;
-    color:white;
+    color:#f8fafc;
     border-radius: 10ch;
     border-width: 0ch;
     font-size: 15px;
     cursor:pointer;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 textarea {
     max-height: 16px;
     transform: translateY(30%);
+}
+
+input, textarea, select {
+    padding: 0.5rem 0.55rem;
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
 }
 
 .mic-selector {
