@@ -10,7 +10,6 @@ This project represents my first end-to-end React application, with a focus on b
 ## Tech Stack
 - **Frontend:** React, Typescript, Vite
 - **Backend:** Python, FastAPI
-- **Audio & AI:** Live microphone input, speech-to-text, AI-driven response logic
 
 ## Key Features
 - **Interview configuration** customize role, level, company, and interview type
@@ -59,4 +58,4 @@ npm run dev
 3. Press **Start Recording**, and respond to the questions as you would in a real interview.
 4. Press **Stop Recording**. You may need to wait a few seconds for AI response.
 5. Press **End Interview** at the bottom of the page at any time to go back to the home screen.
-6. Repeat steps **3-5** until the interviewer wraps up (manually termination required for now).
+6. Repeat steps **3-5** until the interviewer wraps up (manual termination required for now).
