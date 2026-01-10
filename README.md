@@ -1,46 +1,62 @@
 ## Hone
 Hone is an AI-powered interview practice platform designed to help users prepare technical and behavioral interviews through live simulation. 
-Hone was built with a Python backend and Typescript/React frontend.
+Hone was built with a Python backend, a Typescript/React frontend, and FastAPI middleware.
 
 The project was motivated by my own experiences with preparing for interviews. 
 I wanted to make a tool that could ask the right questions, listen to the user's responses, and follow up on those responses.
-My goal was to streamline the practice process through customizability and user-friendly UI.
 
-This project represents my first end-to-end React application.
-The focus was on building a production-style application that connects frontend interaction with live AI-driven functionality.
+This project represents my first end-to-end React application, with a focus on building a production-style system that connects frontend interaction with live, AI-driven backend functionality.
+
+## Tech Stack
+- **Frontend:** React, Typescript, Vite
+- **Backend:** Python, FastAPI
+- **Audio & AI:** Live microphone input, speech-to-text, AI-driven response logic
 
 ## Key Features
-- **Interview configuration** allows users to provide context regarding role, level, company, and interview type.
-- **Live interview simulation** using device microphone with context-aware questions and responses.
-- Real-time audio capture and transcription
+- **Interview configuration** customize role, level, company, and interview type
+- **Live interview simulation** with context-aware questions and responses
+- **Real-time audio capture and transcription**
 
 ## Installation
-1. Clone the repository:
+**Prerequisites**
+- Node.js 18+ (https://nodejs.org)
+- Python 3.9+
+
+**1. Clone the repository and navigate to project directory:**
 ```bash 
-https://github.com/bgao8/React-Interview-Bot.git
-cd hone
+git clone https://github.com/bgao8/React-Interview-Bot.git
+cd React-Interview-Bot
 ```
-2. Install frontend dependencies:
+
+**2. Backend setup**
 ```bash
-npm install
+cd backend
 ```
-3. Install backend dependencies:
+- Install Python dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-4. Install Vosk speech recognition:
-https://github.com/alphacep/vosk-api
-
-5. Run backend and frontend in separate terminal tabs:
+- Start API backend:
 ```bash
 uvicorn main:app --reload
+```
+**3. Frontend setup (in a separate terminal)**
+```bash
+cd frontend
+```
+- Install Javascript dependencies:
+```bash
+npm install
+```
+- Start Vite development server:
+```bash
 npm run dev
 ```
 
 ## Usage Guide
 1. Click **Configure Interview** on the home screen.
-2. Fill in the blanks, then press **Start Interview**.
-3. Press **Start Recording**, and respond as you would in a real interview.
-4. Press **Stop Recording**. You may need to wait a few seconds for the response. 
-5. Repeat steps **3-4**, eventually the interviewer will wrap.
-6. You will need to manually clear **transcript.txt** file locally, then press back arrow on your browser until back at the home screen. [This will be updated]
+2. Fill in configuration fields, then press **Start Interview**.
+3. Press **Start Recording**, and respond to the questions as you would in a real interview.
+4. Press **Stop Recording**. You may need to wait a few seconds for AI response.
+5. Press **End Interview** at the bottom of the page at any time to go back to the home screen.
+6. Repeat steps **3-5** until the interviewer wraps up (manually termination required for now).
