@@ -89,11 +89,13 @@ function Interview() {
 
   return (
     <div className="interview-container">
-      <p className="question-container">
-        {currentQuestion}
-      </p>
+      <div className="question-section">
+        <p className="question-container">
+          {currentQuestion}
+        </p>
+      </div>
 
-      <div>
+      <div className="controls-section">
         <RecordControls
           isRecording={isRecording}
           loading={loading}
