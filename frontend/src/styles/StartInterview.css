@@ -45,12 +45,13 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-textarea {
+/* textarea {
     max-height: 16px;
     transform: translateY(30%);
 }
+*/
 
-input, textarea, select {
+input {
     padding: 0.5rem 0.55rem;
     border: 1px solid #d1d5db;
     font-size: 0.95rem;
