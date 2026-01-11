@@ -21,6 +21,8 @@ class Interviewer:
         self.type = ''
         self.notes = ''
 
+        self.transcript = []
+
         self.greeting = True
 
     def is_recording(self):
@@ -58,9 +60,7 @@ class Interviewer:
         return self.ask_question()
 
     def build_message(self):
-        if os.path.exists('transcript.txt'):
-            with open('transcript.txt', 'r') as file:
-                transcript = ''.join(file.readlines())
+        transcript = ''.join(self.transcript)
 
         if not self.greeting:
             messages=[
@@ -101,14 +101,15 @@ class Interviewer:
             )
             question = response.choices[0].message.content.strip()
             self.add_to_transcript('Interviewer', question)
+            self.greeting = False
             return question
 
         except Exception as e:
             raise e
 
     def add_to_transcript(self, role, text):
-        with open('transcript.txt' , 'a') as file:
-            file.write(f'{role}: {text}\n')
+        self.transcript.append(f'{role}: {text}\n')
+        print(''.join(self.transcript))
 
     # For future use
     '''
@@ -146,6 +147,4 @@ class Interviewer:
     '''
 
     def reset(self):
-        if os.path.exists('transcript.txt'):
-            with open('transcript.txt', 'w'):
-                pass
+        self.transcript.clear()
